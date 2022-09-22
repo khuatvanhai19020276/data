@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Render, Res } from "@nestjs/common";
 import { Book } from "src/schemas/book.schema";
 import { BookService } from "src/services/book.service";
 
@@ -14,13 +14,20 @@ export class BookController {
         })
     }
 
+    // @Get()
+    // async fetchAll(@Res() response) {
+    //     const books = await this.bookService.readAll();
+    //     return response.status(HttpStatus.OK).json({
+    //         books
+    //     })
+    // }
     @Get()
-    async fetchAll(@Res() response) {
-        const books = await this.bookService.readAll();
-        return response.status(HttpStatus.OK).json({
-            books
-        })
+    @Render('index')
+    root() {
+        
+       return this.bookService.readAll().then((result) => result ? { books : result } : { books : [] }) ;
     }
+     
 
     @Get('/:id')
     async findById(@Res() response, @Param('id') id) {

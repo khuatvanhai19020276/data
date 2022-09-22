@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <style>
+     td {
+        color:red;
+    }
+    table, th, td {
+        border:1px solid black;
+    }
+      </style>
+</head>
+
+<body>
+
+  <table style="width:100%">
+    
+  <tr>
+    <td>name</td>
+    <td>author</td>
+    <td>publishYear</td>
+  </tr>
+  
+  {{#each books}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{author}}</td>
+    <td>{{publishYear}}</td>
+  </tr>
+  {{/each}}
+</table>
+
+</body>
+
+</html>
